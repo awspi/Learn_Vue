@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 如果我们希望把数据显示到模板（template）中，使用最多的语法是 “Mustache”语法 (双大括号) 的文本插值。
+并且我们前端提到过，data返回的对象是有添加到Vue的响应式系统中；
+当data中的数据发生改变时，对应的内容也会发生更新。 当然，Mustache中不仅仅可以是data中的属性，也可以是一个JavaScript的表达式。 -->
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <h2>{{message}}</h2>
+        <h2>{{message.split(" ").reverse().join(" ")}}</h2>
+        <!-- 可以三目 不能用if 也不能用赋值 -->
+        <!-- <h2>{{if(message){return counter;}}}</h2> -->
+        <!-- <h2>{{var name='hello';}}</h2> -->
+        <h2>{{counter}}</h2>
+        <h2>{{counter*100}}</h2>
+        <button @click="increment">➕</button>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    message:"Hello World",
+                    counter:100
+                }
+            },
+            methods: {
+                increment(){
+                    this.counter++;
+                }
+            },
+
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!-- key可加可不加引号，val必须加，否则会当成变量 -->
+        <div :style="{color:'red'}">rrrrrred</div>
+        <!-- 如果使用 - ，如font-size,必须加引号 -->
+        <div :style="{'font-size':'30px'}">biggggggg</div>
+        <!-- 换成驼峰命名法-->
+        <div :style="{'font-size':finalFontSize+'px'}">biggggggger</div>
+        <!-- 绑定对象变量 -->
+        <div :style="styleObj">blueeeeee</div>
+        <!-- 将返回的对象放在一个methods方法中 -->
+        <div :style="getStyleObj()">Orangeeeee</div>
+
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    message:"Hello World",
+                    finalColor:"blue",
+                    finalFontSize:50,
+                    styleObj:{
+                        fontSize:"50px",
+                        fontWeight:700,
+                        backgroundColor:"blue"
+                    }
+                }
+            },
+            methods: {
+                getStyleObj(){
+                    return{
+                        fontSize:"50px",
+                        fontWeight:700,
+                        color:"orange"
+                    }
+                }
+            },
+
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>
