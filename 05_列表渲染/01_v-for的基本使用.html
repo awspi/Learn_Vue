@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <h2>movieList</h2>
+        <ul>
+            <li v-for="movie in movies">{{movie}}</li>
+            <!-- 索引值 别名,index -->
+            <li v-for="movie,indexin movies">{{index+1}}{{movie}}</li>
+        </ul>
+        <h2>Me</h2>
+        <!-- 遍历一个对象，只有一个参数拿到的是对象的值 ，2个参数拿到是键值对-->
+        <!-- 值，键，index in asdasdsa -->
+        <ul><li v-for="val,key,index in info">{{index+1}}.  {{key}} : {{val}}</li></ul>
+        <!-- 遍历数字 从1开始，也有索引值index从0开始 -->
+        <ul><li v-for="num,index in 10">{{index}}{{num}}</li></ul>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    movies: ["movie1", "movie2", "movie3", "movie4", "movie5"],
+                    info: {
+                        name:"pithy",
+                        age:21,
+                        profile:"nothing"
+                    }
+                }
+
+            }
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <button @click="changeInfo">changeInfo</button>
+        <button @click="info.name='bcd'">changeInfoName</button>
+        <h2>{{info}}</h2>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    info:{
+                        name:"pithy",
+                        age:21
+                    },
+                    massage:"123"
+                }
+            },
+            methods: {
+                changeInfo(){
+                    this.info={name:'abc'}
+                }
+            },
+            watch:{//默认情况下侦听器只会针对数据本身的改变，内部的改变不会侦听
+                // info(newInfo,oldInfo){
+                //     console.log(newInfo,oldInfo);
+                // }
+                info:{
+                    handler:function(newVal,oldVal){
+                        console.log(newVal,oldVal);
+                    },
+                    deep:true,//深度侦听
+                    // immediate:true//立即
+                }
+            }
+
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新 -->
+    <template id="my-app">
+        <input type="text" v-model="newMovie">
+        <button @click="addMovie">Add</button>
+        <ul><li v-for="movie in movies">{{movie}}</li></ul>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    movies: ["movie1", "movie2", "movie3", "movie4", "movie5"],
+                    newMovie:""
+                }
+            },
+            methods: {
+                addMovie(){
+                    this.movies.push(this.newMovie);
+                    this.newMovie=""
+                }
+            },
+
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <!-- 绑定 textarea -->
+        <h2>{{message}}</h2>
+        <textarea name="intro" id="" cols="30" rows="10" v-model="message"></textarea>
+
+    <hr>
+        <!-- 绑定checkbox -->
+        <!-- 1.单选 -->
+        <label for="agree">
+            <input id="agree" type="checkbox" v-model="isAgree">同意
+            <h2>{{isAgree}}</h2>
+        </label>
+        <hr>
+        <!-- 1.多选  要写value-->
+        <h2>{{hobbies}}</h2>
+        <label for="hobby1">
+            <input id="hobby1" type="checkbox" value="hobby1" v-model="hobbies">hobby1
+        </label>
+        <label for="hobby2">
+            <input id="hobby2" type="checkbox" value="hobby2" v-model="hobbies">hobby2
+        </label>
+        <label for="hobby3">
+            <input id="hobby3" type="checkbox" value="hobby3" v-model="hobbies">hobby3
+        </label>
+        <hr>
+        <!-- 3.radio -->
+        <label for="male">
+            <input type="radio" id="male" value="male" v-model="gender">女
+        </label>        
+        <label for="female">
+            <input type="radio" id="female" value="female" v-model="gender">男
+        </label>
+        <h2>{{gender}}</h2>
+        <!-- 4.select -->
+        <select v-model="fruit" >
+            <option value="apple">apple</option>
+            <option value="banana">banana</option>
+            <option value="orange">orange</option>
+        </select>
+        <h2>{{fruit}}</h2>
+
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    message:"Hello World",
+                    isAgree:false,
+                    hobbies:[],
+                    gender:"",
+                    fruit:""
+                }
+            }
+
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

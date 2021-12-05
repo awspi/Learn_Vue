@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+        
+    <template id="my-app">
+        <component-a></component-a>
+        <component-b></component-b>
+    </template>
+
+    <!-- 使用（驼峰标识符）当使用 PascalCase(首字母大写命名)定义一个组件时，
+    你在引用这个自定义元素时两种命名法都可以使用。
+    也就是说 <my-component-name> 和 <MyComponentName> 都是可接受的； -->
+    <template id="component-a">
+        <h2>{{title} }</h2>
+        <h2>component-a</h2>
+        <button @click="btnClick">btn</button>
+    </template>
+    <template id="component-b">
+        <h2>{{title}}</h2>
+        <h2>component-b</h2>
+        <button @click="btnClick">btn</button>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const App={
+            template:"#my-app",
+            data(){
+                return{
+                    message:"Hello World"
+                }
+            }
+
+        }
+        //拆分
+        const app=Vue.createApp(App);
+        // 使用app注册一个全局组件
+        //全局组件：可以在任何组件模版中使用
+        // .component("组件名称"，组件对象)
+        
+        app.component("component-a",{
+            template:"#component-a",
+            data(){
+               return{
+                title:'titleaaaa'
+               }
+            },
+            methods: {
+                btnClick(){
+                    alert("hi~");
+                }
+            },
+        })
+        app.component("component-b",{
+            template:"#component-b",
+            data(){
+               return{
+                title:'titlebbbb'
+               }
+            },
+            methods: {
+                btnClick(){
+                    alert("hello");
+                }
+            },
+        })
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
